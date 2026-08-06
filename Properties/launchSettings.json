@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Rhino 8 - netcore": {
+      "commandName": "Executable",
+      "executablePath": "/Applications/Rhino 8.app/Contents/MacOS/Rhinoceros",
+      "commandLineArgs": "",
+      "environmentVariables": {
+        "RHINO_PACKAGE_DIRS": "$(ProjectDir)bin/Debug"
+      }
+    }
+  }
+}

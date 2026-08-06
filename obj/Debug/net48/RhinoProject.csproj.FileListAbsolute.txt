@@ -1,0 +1,9 @@
+/Users/lukenorton/RhinoProject/bin/Debug/net48/RhinoProject.rhp
+/Users/lukenorton/RhinoProject/bin/Debug/net48/RhinoProject.pdb
+/Users/lukenorton/RhinoProject/obj/Debug/net48/RhinoProject.csproj.AssemblyReference.cache
+/Users/lukenorton/RhinoProject/obj/Debug/net48/RhinoProject.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lukenorton/RhinoProject/obj/Debug/net48/RhinoProject.AssemblyInfoInputs.cache
+/Users/lukenorton/RhinoProject/obj/Debug/net48/RhinoProject.AssemblyInfo.cs
+/Users/lukenorton/RhinoProject/obj/Debug/net48/RhinoProject.csproj.CoreCompileInputs.cache
+/Users/lukenorton/RhinoProject/obj/Debug/net48/RhinoProject.rhp
+/Users/lukenorton/RhinoProject/obj/Debug/net48/RhinoProject.pdb
