@@ -11,15 +11,15 @@ namespace RhinoProject
     /// attributes in AssemblyInfo.cs (you might need to click "Project" ->
     /// "Show All Files" to see it in the "Solution Explorer" window).</para>
     ///</summary>
-    public class RhinoProjectPlugin : Rhino.PlugIns.PlugIn
+    public class BuildHousePlugin : Rhino.PlugIns.PlugIn
     {
-        public RhinoProjectPlugin()
+        public BuildHousePlugin()
         {
             Instance = this;
         }
         
         ///<summary>Gets the only instance of the RhinoProjectPlugin plug-in.</summary>
-        public static RhinoProjectPlugin Instance { get; private set; }
+        public static BuildHousePlugin Instance { get; private set; }
 
         // You can override methods here to change the plug-in behavior on
         // loading and shut down, add options pages to the Rhino _Option command

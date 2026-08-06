@@ -8,9 +8,9 @@ using Rhino.Input.Custom;
 
 namespace RhinoProject
 {
-    public class RhinoProjectCommand : Command
+    public class BuildHouseCommand : Command
     {
-        public RhinoProjectCommand()
+        public BuildHouseCommand()
         {
             // Rhino only creates one instance of each command class defined in a
             // plug-in, so it is safe to store a refence in a static property.
@@ -18,7 +18,7 @@ namespace RhinoProject
         }
 
         ///<summary>The only instance of this command.</summary>
-        public static RhinoProjectCommand Instance { get; private set; }
+        public static BuildHouseCommand Instance { get; private set; }
 
         ///<returns>The command name as it appears on the Rhino command line.</returns>
         public override string EnglishName => "RhinoProjectCommand";
