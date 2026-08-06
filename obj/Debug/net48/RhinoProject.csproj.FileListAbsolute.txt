@@ -7,3 +7,4 @@
 /Users/lukenorton/RhinoProject/obj/Debug/net48/RhinoProject.csproj.CoreCompileInputs.cache
 /Users/lukenorton/RhinoProject/obj/Debug/net48/RhinoProject.rhp
 /Users/lukenorton/RhinoProject/obj/Debug/net48/RhinoProject.pdb
+/Users/lukenorton/RhinoProject/obj/Debug/net48/RhinoProject.sourcelink.json

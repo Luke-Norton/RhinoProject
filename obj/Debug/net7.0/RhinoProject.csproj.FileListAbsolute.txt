@@ -12,3 +12,4 @@
 /Users/lukenorton/RhinoProject/obj/Debug/net7.0/RhinoProject.pdb
 /Users/lukenorton/RhinoProject/obj/Debug/net7.0/RhinoProject.genruntimeconfig.cache
 /Users/lukenorton/RhinoProject/obj/Debug/net7.0/ref/RhinoProject.rhp
+/Users/lukenorton/RhinoProject/obj/Debug/net7.0/RhinoProject.sourcelink.json

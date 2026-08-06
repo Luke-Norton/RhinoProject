@@ -12,8 +12,6 @@ namespace RhinoProject
     {
         public BuildHouseCommand()
         {
-            // Rhino only creates one instance of each command class defined in a
-            // plug-in, so it is safe to store a refence in a static property.
             Instance = this;
         }
 
@@ -21,47 +19,44 @@ namespace RhinoProject
         public static BuildHouseCommand Instance { get; private set; }
 
         ///<returns>The command name as it appears on the Rhino command line.</returns>
-        public override string EnglishName => "RhinoProjectCommand";
+        public override string EnglishName => "BuildHouse";
 
         protected override Result RunCommand(RhinoDoc doc, RunMode mode)
         {
-            // TODO: start here modifying the behaviour of your command.
-            // ---
-            RhinoApp.WriteLine("The {0} command will add a line right now.", EnglishName);
-
-            Point3d pt0;
+            Point3d centerPoint;
             using (GetPoint getPointAction = new GetPoint())
             {
-                getPointAction.SetCommandPrompt("Please select the start point");
+                getPointAction.SetCommandPrompt("Select the center point for the house");
                 if (getPointAction.Get() != GetResult.Point)
                 {
-                    RhinoApp.WriteLine("No start point was selected.");
+                    RhinoApp.WriteLine("No point was selected.");
                     return getPointAction.CommandResult();
                 }
-                pt0 = getPointAction.Point();
+                centerPoint = getPointAction.Point();
             }
+            
+            AddBody(doc, centerPoint, 10, 10, 10);
 
-            Point3d pt1;
-            using (GetPoint getPointAction = new GetPoint())
-            {
-                getPointAction.SetCommandPrompt("Please select the end point");
-                getPointAction.SetBasePoint(pt0, true);
-                getPointAction.DynamicDraw +=
-                  (sender, e) => e.Display.DrawLine(pt0, e.CurrentPoint, System.Drawing.Color.DarkRed);
-                if (getPointAction.Get() != GetResult.Point)
-                {
-                    RhinoApp.WriteLine("No end point was selected.");
-                    return getPointAction.CommandResult();
-                }
-                pt1 = getPointAction.Point();
-            }
-
-            doc.Objects.AddLine(pt0, pt1);
             doc.Views.Redraw();
-            RhinoApp.WriteLine("The {0} command added one line to the document.", EnglishName);
+            RhinoApp.WriteLine("The {0} command added a house to the document.", EnglishName);
 
-            // ---
             return Result.Success;
+        }
+
+        private void AddBody(RhinoDoc doc, Point3d centerPoint, double width, double depth, double height)
+        {
+            Point3d minCorner = new Point3d(
+                centerPoint.X - width / 2.0,
+                centerPoint.Y - depth / 2.0,
+                centerPoint.Z);
+
+            Point3d maxCorner = new Point3d(
+                centerPoint.X + width / 2.0,
+                centerPoint.Y + depth / 2.0,
+                centerPoint.Z + height);
+
+            Box body = new Box(new BoundingBox(minCorner, maxCorner));
+            doc.Objects.AddBox(body);
         }
     }
 }
