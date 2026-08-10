@@ -35,10 +35,28 @@ namespace RhinoProject
                 centerPoint = getPointAction.Point();
             }
 
-            AddBody(doc, centerPoint, 10, 10, 10);
-            AddRoof(doc, centerPoint, 15, 10, 10);
-            AddDoor(doc, centerPoint, 10, 10, 10);
-            AddChimney(doc, centerPoint, 10, 10, 10);
+            double width = 10;
+            if (RhinoGet.GetNumber("Width of the house", false, ref width) != Result.Success)
+            {
+                return Result.Cancel;
+            }
+
+            double depth = 10;
+            if (RhinoGet.GetNumber("Depth of the house", false, ref depth) != Result.Success)
+            {
+                return Result.Cancel;
+            }
+
+            double height = 10;
+            if (RhinoGet.GetNumber("Height of the house", false, ref height) != Result.Success)
+            {
+                return Result.Cancel;
+            }
+
+            AddBody(doc, centerPoint, width, depth, height);
+            AddRoof(doc, centerPoint, width, depth, height);
+            AddDoor(doc, centerPoint, width, depth, height);
+            AddChimney(doc, centerPoint, width, depth, height);
 
             doc.Views.Redraw();
             RhinoApp.WriteLine("The {0} command added a house to the document.", EnglishName);

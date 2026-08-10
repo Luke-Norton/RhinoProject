@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Description of RhinoProject")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+b9aa21a52b546ff6e0fa85ce994e59c449edc430")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+bf921dae47efe7d440196d422bc6a53d5504e9cd")]
 [assembly: System.Reflection.AssemblyProductAttribute("RhinoProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RhinoProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
