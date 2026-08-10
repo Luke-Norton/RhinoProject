@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Rhino;
 using Rhino.Commands;
@@ -34,10 +34,11 @@ namespace RhinoProject
                 }
                 centerPoint = getPointAction.Point();
             }
-            
+
             AddBody(doc, centerPoint, 10, 10, 10);
-            AddRoof(doc, centerPoint, 10, 10, 10);
+            AddRoof(doc, centerPoint, 15, 10, 10);
             AddDoor(doc, centerPoint, 10, 10, 10);
+            AddChimney(doc, centerPoint, 10, 10, 10);
 
             doc.Views.Redraw();
             RhinoApp.WriteLine("The {0} command added a house to the document.", EnglishName);
@@ -81,8 +82,19 @@ namespace RhinoProject
             Brep rightSlope = Brep.CreateFromCornerPoints(
                 topFrontRight, topBackRight, ridgeBack, ridgeFront, doc.ModelAbsoluteTolerance);
 
+            Brep frontGable = Brep.CreateFromCornerPoints(
+                topFrontLeft, topFrontRight, ridgeFront, doc.ModelAbsoluteTolerance);
+            Brep backGable = Brep.CreateFromCornerPoints(
+                topBackLeft, topBackRight, ridgeBack, doc.ModelAbsoluteTolerance);
+
+            Brep roofBase = Brep.CreateFromCornerPoints(
+                topFrontLeft, topFrontRight, topBackRight, topBackLeft, doc.ModelAbsoluteTolerance);
+
             doc.Objects.AddBrep(leftSlope);
             doc.Objects.AddBrep(rightSlope);
+            doc.Objects.AddBrep(frontGable);
+            doc.Objects.AddBrep(backGable);
+            doc.Objects.AddBrep(roofBase);
         }
 
         private void AddDoor(RhinoDoc doc, Point3d centerPoint, double width, double depth, double height)
@@ -103,6 +115,30 @@ namespace RhinoProject
                 doorBottomLeft, doorBottomRight, doorTopRight, doorTopLeft, doc.ModelAbsoluteTolerance);
 
             doc.Objects.AddBrep(door);
+        }
+
+        private void AddChimney(RhinoDoc doc, Point3d centerPoint, double width, double depth, double height)
+        {
+            double roofRise = height / 4;
+            double topZ = centerPoint.Z + height;
+
+            double chimneyWidth = width * 0.15;
+            double chimneyDepth = depth * 0.15;
+            double chimneyCenterX = centerPoint.X - width * 0.3;
+            double chimneyCenterY = centerPoint.Y - depth * 0.25;
+
+            Point3d minCorner = new Point3d(
+                chimneyCenterX - chimneyWidth / 2.0,
+                chimneyCenterY - chimneyDepth / 2.0,
+                topZ);
+
+            Point3d maxCorner = new Point3d(
+                chimneyCenterX + chimneyWidth / 2.0,
+                chimneyCenterY + chimneyDepth / 2.0,
+                topZ + roofRise + height * 0.3);
+
+            Box chimney = new Box(new BoundingBox(minCorner, maxCorner));
+            doc.Objects.AddBox(chimney);
         }
     }
 }
